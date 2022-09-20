@@ -3,7 +3,7 @@
 
 bill = float(input("Enter the lunch bill: "))
 
-tips1 = bill * 0.15+
+tips1 = bill * 0.15
 tips2 = bill * 0.20
 
 print("Tips:", tips1, end=", ")
