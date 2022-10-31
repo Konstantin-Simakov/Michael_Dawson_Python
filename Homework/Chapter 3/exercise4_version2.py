@@ -22,7 +22,7 @@ while answer != "Yes":
 	answer = input()
 
 
-	if MAX - number == 1 and answer != "Yes":
+	if MAX - number == 1:
 		number += 1
 		break
 
