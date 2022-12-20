@@ -38,7 +38,6 @@ print(
 	(Press the key <Enter> without input your version to exit.)
 """
 )
-
 # Output the prompt
 print("\nGuessed word:", guess)
 print("\nPrompt for guessing:")
