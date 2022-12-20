@@ -11,8 +11,8 @@ PROMPTS = (
 		"\"That is an untidy collection or pile of things.\"", 				# 2nd prompt
 		"\"That was achieved without great effort.\"",						# 3rd prompt
 		"\"That was achieved with great effort.\"",							# 4th prompt
-		"\"This is a thing said, written, or done to deal with or as a\n" \
-		   + "reaction to a question, statement, or situation.\"",			# 5th prompt
+		"\"This is a thing said, written, or done to deal with or as\n" \
+		   + "a reaction to a question, statement, or situation.\"",		# 5th prompt
 		"\"This is a musical instrument.\""									# 6th prompt
 )
 # The max number of attempts to guess a letter in a word
@@ -38,13 +38,15 @@ print(
 	(Press the key <Enter> without input your version to exit.)
 """
 )
+
 # Output the prompt
-print("Prompt for guessing:")
+print("\nGuessed word:", guess)
+print("\nPrompt for guessing:")
 print(PROMPTS[index])
 
 # 'Word' algorithm realization.
 # Enter a letter from the word
-print("Try to guess a letter from the word (up to", 
+print("\nTry to guess a letter from the word (up to", 
 	ATTEMPTS, "attempts for a letter):", end=" ")
 letter = input()
 # Current number of attempts
