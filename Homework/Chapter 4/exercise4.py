@@ -1,7 +1,7 @@
 # exercise4.py -- Chapter 4
 # The computer picks some word and a player try to guess it
 
-import random			# For randrange()
+import random			# For random.randrange()
 
 # Set of 'ranodm' words that have to be guessed by the player
 WORDS = ("purple", "jumble", "easy", "difficult", "answer", "xylophone")	# Total: 6 words
