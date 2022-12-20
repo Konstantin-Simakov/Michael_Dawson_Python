@@ -11,15 +11,17 @@ so do not trifle, write the amounts in dollars, without cents.
 """
 )
 
-car = input("'Lamborgini' car maintenance: ")
-rent = input("Rent a luxury apartment in Manhattan: ")
-jet = input("Rent an aircraft: ")
-gifts = input("Gifts: ")
-food = input("Lunch and dinner in resaurants: ")
-staff = input("Salary of servants (butler, cook, driver, secretary): ")
-guru = input("Salary of personal psychoanalyst: ")
-games = input("Computer games: ")
+car = input("'Lamborgini' car maintenance: $")
+rent = input("Rent a luxury apartment in Manhattan: $")
+jet = input("Rent an aircraft: $")
+gifts = input("Gifts: $")
+food = input("Lunch and dinner in resaurants: $")
+staff = input("Salary of servants (butler, cook, driver, secretary): $")
+guru = input("Salary of personal psychoanalyst: $")
+games = input("Computer games: $")
 
 total = car + rent + jet + gifts + food + staff + guru + games
-print("\nTotal:", total)
+print("\nTotal: $", end="")
+print(total)
+
 input("\n\nPress the key [Enter] to exit.")

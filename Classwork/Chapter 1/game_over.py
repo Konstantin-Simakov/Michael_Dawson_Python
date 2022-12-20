@@ -1,5 +1,5 @@
-# Game Over
-# Demonstrates how print() funciton works
+# game_over.py
+# Displays the message "Game Over".
 
 print("Game Over")
-input("\n\nPress the key [Enter] to exit.")
+input("\n\nPress the key <Enter> to exit.")

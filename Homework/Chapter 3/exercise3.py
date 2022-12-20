@@ -1,4 +1,4 @@
-# exercise3.py
+# exercise3.py -- Chapter 3
 #
 # The computer chooses a random number between 1 and 100.
 # The player attempts to guess within a limited number of tries (5 tries) 

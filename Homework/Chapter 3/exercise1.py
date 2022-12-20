@@ -1,4 +1,4 @@
-# exercise1.py
+# exercise1.py -- Chapter 3
 # 
 # The program is a simulator of a pie festival.
 # It displays 1 of 5 different pies that are choiced by a random way

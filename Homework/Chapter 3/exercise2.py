@@ -1,4 +1,4 @@
-# exercise2.py
+# exercise2.py -- Cahpter 3
 #
 # This program "tosses" a coin 100 times 
 # and reports how many times heads and how many times tails.

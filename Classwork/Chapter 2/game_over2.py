@@ -1,5 +1,5 @@
-# Game Over -- version 2
-# Demonstrates different ways to work with strings
+# game_over2.py
+# Demonstrates different ways of working with strings
 
 print("Program 'Game Over' 2.0")
 
@@ -26,8 +26,8 @@ print(
     | | | | | |  / /  | |__   | |_| |
     | | | | | | / /   |  __|  |  _  /
     | |_| | | |/ /    | |___  | | \ \ 
-    \_____/ |___/     |_____| |_|  \_\  
+    \_____/ |___/     |_____| |_|  \_\ 
     """
-     )
+)
 
-input("\n\nPress the Enter key to exit.")
+input("\n\nPress the key [Enter] to exit.")

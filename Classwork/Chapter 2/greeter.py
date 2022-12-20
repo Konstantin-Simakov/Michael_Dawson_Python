@@ -1,5 +1,5 @@
 # greeter.py
-# Demonstrates using of variables
+# Demonstrates using variables
 
 name = "Basilevs"
 print(name)

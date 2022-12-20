@@ -5,8 +5,9 @@
 import random
 
 # Create random numbers from the range 1-6
-die1 = random.randint(1, 6)
-die2 = random.randrange(6)
-total = die1 + die2
-print("Your roll resulted in", die1, "and", die2, "points, for a total", total)
+dice1 = random.randint(1, 6)
+dice2 = random.randrange(6) + 1
+total = dice1 + dice2
+print("Your roll resulted in", dice1, "and", dice2, "points, for a total", 
+	total, "points.")
 input("\n\nPress the key [Enter] to exit.")

@@ -1,4 +1,4 @@
-# exercise4.py
+# exercise4.py -- Chapter 3
 # Guesses a user-specified number using a binary search strategy.
 
 # Set the working range 

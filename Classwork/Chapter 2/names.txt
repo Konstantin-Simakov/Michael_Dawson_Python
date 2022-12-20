@@ -1,0 +1,17 @@
+# names.txt
+
+Allowed					Not allowed
+person_123				456person_123
+guy						\guy
+HELLO					"'HELLO
+full_name				full_name$%
+__adkfjkajf__				123____adkfjkajf___
+prim					print
+
+
+Good (allowed)			Bad (allowed)
+letter					alpha000001110101
+HELLO					h
+name					n
+flower 					name_of_my_favourite_flower
+hello_world				__hello__				

@@ -1,4 +1,4 @@
-# exercise4_version2.py
+# exercise4_version2.py -- Chapter 3
 # Guesses a user-specified number using a sequential search strategy.
 
 MIN = 1
@@ -22,7 +22,7 @@ while answer != "Yes":
 	answer = input()
 
 
-	if MAX - number == 1:
+	if MAX - number == 1 and answer != "Yes":
 		number += 1
 		break
 
