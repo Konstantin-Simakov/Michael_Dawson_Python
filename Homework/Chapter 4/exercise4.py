@@ -18,7 +18,7 @@ PROMPTS = (
 # The max number of attempts to guess a letter in a word
 ATTEMPTS = 5
 
-# Pick one word randomly from the sequence
+# Pick one word randomly from the sequence by the 'WORDS' index
 index = random.randrange(len(WORDS))
 word = WORDS[index]
 
