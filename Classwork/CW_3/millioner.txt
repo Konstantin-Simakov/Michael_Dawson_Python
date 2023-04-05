@@ -1,0 +1,16 @@
+millioner.txt
+It is an algorithm in pseudocode.
+
+if you are able to come up with a new product
+	release it into the light
+else
+	release an existing product under your own brand
+create a promotional video for your product:
+	write the scene of your ad
+	take a studio for a 1 day
+	take a photo groop:
+	call your friends
+	take a video
+show this video on TV
+set a price of $100 per item
+sell 10,000 items

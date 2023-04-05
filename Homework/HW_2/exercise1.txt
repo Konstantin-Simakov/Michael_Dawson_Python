@@ -1,0 +1,20 @@
+# exercise1.txt
+
+1st list of variable names:
+Alowed			Not allowed
+hello2				2hello
+trivia				t'igla
+lost_123			123_lost
+prnt                print
+put                 input
+ etc...
+
+2nd list of allowed variable name:
+Good				Bad
+name			name_of_my_favourite_ice_cream
+person				p
+letter				alpha1597251952
+root				__root
+root2               root__
+my_root             __root__
+ etc...
