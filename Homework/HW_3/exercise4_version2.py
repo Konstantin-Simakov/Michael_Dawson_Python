@@ -2,7 +2,7 @@
 # Guesses a user-specified number using a sequential search strategy.
 
 MIN = 1
-MAX = 100
+MAX = 5
 
 print("Computer will guess your number between", MIN, "and", MAX)
 
