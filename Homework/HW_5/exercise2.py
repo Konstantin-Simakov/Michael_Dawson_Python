@@ -70,7 +70,7 @@ What action do you want to choose?\n
 
 	# 2 - Withdraw points from attributes to pool
 	elif 2 == choice:
-		strength = int(input("How many points do you want to withdraw from \'Strength\'? "))
+		strength = int(input("\nHow many points do you want to withdraw from \'Strength\'? "))
 		health = int(input("How many points do you want to withdraw from \'Health\'? "))
 		wisdom = int(input("How many points do you want to withdraw from \'Wisdom\'? "))
 		dexterity = int(input("How many points do you want to withdraw from \'Dexterity\'? "))
