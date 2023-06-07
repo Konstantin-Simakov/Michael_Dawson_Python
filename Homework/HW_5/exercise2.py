@@ -22,7 +22,7 @@ while choice != 0:
 	print("\nYour person has follow attributes:\n")
 	for attribute in person.keys():
 		print("\t\t", end="")
-		print(attribute, "-", person[attribute][0])
+		print(attribute, "-", person[attribute])
 	print("\n\t\tPool has", pool, "points.")
 
 	# Menu
