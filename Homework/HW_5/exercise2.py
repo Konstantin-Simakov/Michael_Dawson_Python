@@ -10,7 +10,7 @@
 # Constants
 MAX_POOL = 30
 
-# Initial varaibles
+# Initial varaibles.
 person = {"Strength": 0, "Health": 0, "Wisdom": 0, "Dexterity": 0}
 pool = MAX_POOL
 
@@ -18,12 +18,11 @@ print("Welcome to \'Creator of Roler Person\'!")
 
 choice = None
 while choice != 0:
-	# Output results
+	# Output of results
 	print("\nYour person has follow attributes:\n")
-	print("\t\tStrength -", person["Strength"])
-	print("\t\tHealth -", person["Health"])
-	print("\t\tWisdom -", person["Wisdom"])
-	print("\t\tDexterity -", person["Dexterity"])
+	for attribute in person.keys():
+		print("\t\t", end="")
+		print(attribute, "-", person[attribute][0])
 	print("\n\t\tPool has", pool, "points.")
 
 	# Menu
@@ -50,11 +49,11 @@ What action do you want to choose?\n
 		dexterity = int(input("How many points do you want to add for \'Dexterity\'? "))
 		
 		# Input validation
-		while strength + health + wisdom + dexterity > pool or \
-				strength < 0 or \
-				health < 0 or \
-				wisdom < 0 or \
-				dexterity < 0:
+		while (strength + health + wisdom + dexterity > pool or
+				strength < 0 or
+				health < 0 or
+				wisdom < 0 or
+				dexterity < 0):
 			print("Incorrect input. Try again.")
 			strength = int(input("How many points do you want to add for \'Strength\'? "))
 			health = int(input("How many points do you want to add for \'Health\'? "))
@@ -70,7 +69,7 @@ What action do you want to choose?\n
 
 	# 2 - Withdraw points from attributes to pool
 	elif 2 == choice:
-		strength = int(input("\nHow many points do you want to withdraw from \'Strength\'? "))
+		strength = int(input("How many points do you want to withdraw from \'Strength\'? "))
 		health = int(input("How many points do you want to withdraw from \'Health\'? "))
 		wisdom = int(input("How many points do you want to withdraw from \'Wisdom\'? "))
 		dexterity = int(input("How many points do you want to withdraw from \'Dexterity\'? "))
