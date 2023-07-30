@@ -25,7 +25,7 @@ class Televisor(object):
 
 	def select_channel(self):
 		channel = int(input("Enter a channel number: "))
-		while channel < 0 or channel > MAX_CHANNEL:
+		while channel < 1 or channel > MAX_CHANNEL:
 			print("Incorrect channel number has been entered. Try again.")
 			channel = int(input("Enter a channel number: "))
 
