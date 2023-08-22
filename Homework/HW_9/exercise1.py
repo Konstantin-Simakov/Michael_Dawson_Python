@@ -122,7 +122,6 @@ class BJ_Dealer(BJ_Hand):
 class BJ_Game(object):
 	""" The 'Blackjack' game. """
 	MAX_DECKS = 8
-	decks = 0
 
 	def __init__(self, names):
 		self.players = []
@@ -134,6 +133,8 @@ class BJ_Game(object):
 		self.deck = BJ_Deck()
 		self.deck.populate()
 		self.deck.shuffle()
+
+		self.decks = 0
 
 	@property
 	def still_playing(self):
@@ -154,9 +155,9 @@ class BJ_Game(object):
 	def play(self):
 		# Checks how many cards in the deck. 
 		# If the number of players multiplied by 5 is less, clear the deck, populate and shuffle it. 
-		if (len(self.deck.cards) < len(self.players) * 25 and
-				BJ_Game.decks < BJ_Game.MAX_DECKS):
-			BJ_Game.decks += 1
+		if (len(self.deck.cards) < len(self.players) * 5 and
+				self.decks < BJ_Game.MAX_DECKS):
+			self.decks += 1
 			print("Populate and shuffle the deck...")
 			self.deck.populate()
 			self.deck.shuffle()
