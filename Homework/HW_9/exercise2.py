@@ -40,7 +40,7 @@ class GW_Hand(cards.Hand):
 	def __str__(self):
 		return self.name + ":\t" + super().__str__()
 
-	# Hand needs a value!!!
+	# Hand needs a total value!!!
 	@property
 	def total(self):
 		t = 0
