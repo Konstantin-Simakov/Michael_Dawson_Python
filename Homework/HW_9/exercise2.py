@@ -97,6 +97,7 @@ class GW_Game(object):
 
 
 	def play(self):
+		# Checks if the deck is enough full for the next round.
 		if len(self.deck.cards) < len(self.players):
 			self.deck.clear()
 			self.deck.populate()
