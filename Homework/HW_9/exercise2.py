@@ -118,7 +118,7 @@ class GW_Game(object):
 
 
 def main():
-	print("\t\tWelcome to the \'GW\' game!\n\n")
+	print("\t\tWelcome to the \'War\' card game!\n\n")
 
 	number = games.ask_number("\nHow many players total? (2-52): ", low=2, high=52)
 	names = []
