@@ -243,6 +243,7 @@ class BJ_Game(object):
 				for player in self.still_playing:
 					if not player.game_end:
 						if player.total > self.dealer.total:
+							# The player wins with factor 1.5.
 							player.win(1.5)
 						elif player.total < self.dealer.total:
 							player.lose()
