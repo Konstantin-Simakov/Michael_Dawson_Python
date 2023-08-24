@@ -175,7 +175,7 @@ class BJ_Game(object):
 	def play(self):
 		# Checks if the player has no more money before the next round.
 		for player in self.players:
-			if not player.fund:
+			if 0 == player.fund:
 				print(player.name, "has no more money and leaves the gaming table.\n")
 				self.players.remove(player)
 		# Check if there is at least 1 player in the game.
