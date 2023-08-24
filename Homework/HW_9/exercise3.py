@@ -235,6 +235,7 @@ class BJ_Game(object):
 				# Everyone who is still in the game wins.
 				for player in self.still_playing:
 					if not player.game_end:
+						# The player wins with factor 1.5.
 						player.win(1.5)
 						player.game_end = True
 			else:
