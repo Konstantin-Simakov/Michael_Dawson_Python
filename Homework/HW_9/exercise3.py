@@ -84,6 +84,8 @@ class BJ_Player(BJ_Hand):
 		super().__init__(name)
 		self.fund = fund
 		self.bet = 0
+		# If a player immediately has a blackjack, 
+		# then he can end the game right away or wait until it ends.
 		self.game_end = False
 
 	def clear(self):
