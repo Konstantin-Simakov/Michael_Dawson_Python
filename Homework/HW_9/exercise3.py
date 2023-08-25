@@ -163,6 +163,9 @@ class BJ_Game(object):
 		self.deck.shuffle()
 
 		self.decks = 0
+		# If only 1 player is left and he has blackjack;
+		# he doesn't exist by default.
+		self.only_one_and_bj = False
 
 	@property
 	def still_playing(self):
@@ -230,53 +233,59 @@ class BJ_Game(object):
 					# The player wins with a factor of 1 
 					# because he took the winnings immediately.
 					player.win(1)
-					
+
 					# If only 1 player is left and he has blackjack, 
 					# end the game round with initial values 
 					# for the remaining player and the dealer
 					# before the next round.
 					if len(self.players) == 1:
-						player.clear()
-						self.dealer.clear()
-						return
+						self.only_one_and_bj = True
+						# Or replace with:
+						# 
+						# player.clear()
+						# self.dealer.clear()
+						# return
 
-		# The dealer's first card is turned face up.
-		self.dealer.flip_first_card()
+		if not self.only_one_and_bj:
+			# The dealer's first card is turned face up.
+			self.dealer.flip_first_card()
 
-		if not self.still_playing:
-			# All players are busted, we will only show the dealer's hand.
-			print(self.dealer)
-		else:
-			# Deal additional cards to dealer.
-			print(self.dealer)
-			self.__additional_cards(self.dealer)
-
-			if self.dealer.is_busted():
-				# Everyone who is still in the game wins.
-				for player in self.still_playing:
-					if not player.game_end:
-						# The player wins with factor 1.5
-						# because he waited for the end of the game.
-						player.win(1.5)
+			if not self.still_playing:
+				# All players are busted, we will only show the dealer's hand.
+				print(self.dealer)
 			else:
-				# We compare the total points of the dealer
-				# and the players remaining in the game.
-				for player in self.still_playing:
-					if not player.game_end:
-						if player.total > self.dealer.total:
+				# Deal additional cards to dealer.
+				print(self.dealer)
+				self.__additional_cards(self.dealer)
+
+				if self.dealer.is_busted():
+					# Everyone who is still in the game wins.
+					for player in self.still_playing:
+						if not player.game_end:
 							# The player wins with factor 1.5
 							# because he waited for the end of the game.
 							player.win(1.5)
-						elif player.total < self.dealer.total:
-							player.lose()
-						else:
-							player.push()
+				else:
+					# We compare the total points of the dealer
+					# and the players remaining in the game.
+					for player in self.still_playing:
+						if not player.game_end:
+							if player.total > self.dealer.total:
+								# The player wins with factor 1.5
+								# because he waited for the end of the game.
+								player.win(1.5)
+							elif player.total < self.dealer.total:
+								player.lose()
+							else:
+								player.push()
 
 		# Delete all cards and 
 		# set all value to initial state before the next game round.
 		for player in self.players:
 			player.clear()
 		self.dealer.clear()
+
+		self.only_one_and_bj = False
 
 
 def main():
