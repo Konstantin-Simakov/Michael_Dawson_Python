@@ -189,8 +189,8 @@ class BJ_Game(object):
 				player.bust()
 
 	def play(self):
-		# If only 1 player is left and he has blackjack;
-		# he doesn't exist by default.
+		# If only 1 player is left and he has blackjack.
+		# At the beginning of the next round, there is no such player.
 		only_one_and_bj = False
 
 		# Check if any players have no money left before the next round and remove them.
