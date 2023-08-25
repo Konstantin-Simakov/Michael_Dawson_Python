@@ -163,9 +163,6 @@ class BJ_Game(object):
 		self.deck.shuffle()
 
 		self.decks = 0
-		# If only 1 player is left and he has blackjack;
-		# he doesn't exist by default.
-		self.only_one_and_bj = False
 
 	@property
 	def still_playing(self):
@@ -192,6 +189,10 @@ class BJ_Game(object):
 				player.bust()
 
 	def play(self):
+		# If only 1 player is left and he has blackjack;
+		# he doesn't exist by default.
+		only_one_and_bj = False
+
 		# Check if any players have no money left before the next round and remove them.
 		self.players = self.__remove_bankrupts(self.players)
 		# Check if there is at least 1 player in the game.
@@ -239,14 +240,14 @@ class BJ_Game(object):
 					# for the remaining player and the dealer
 					# before the next round.
 					if len(self.players) == 1:
-						self.only_one_and_bj = True
+						only_one_and_bj = True
 						# Or replace with:
 						# 
 						# player.clear()
 						# self.dealer.clear()
 						# return
 
-		if not self.only_one_and_bj:
+		if not only_one_and_bj:
 			# The dealer's first card is turned face up.
 			self.dealer.flip_first_card()
 
@@ -284,8 +285,6 @@ class BJ_Game(object):
 		for player in self.players:
 			player.clear()
 		self.dealer.clear()
-
-		self.only_one_and_bj = False
 
 
 def main():
