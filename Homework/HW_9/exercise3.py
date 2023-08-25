@@ -88,7 +88,16 @@ class BJ_Player(BJ_Hand):
 		# then he can end the game right away or wait until it ends.
 		self.game_end = False
 
+	def place_bet(self):
+		print(self.name, "\'s fund is $", self.fund, ".", sep="")
+
+		# Get how much money the player wants to bet.
+		bet = games.ask_number("Your bet (1 - " + str(self.fund) + "): $", 
+				low=1, high=(self.fund + 1))
+		self.bet = bet
+
 	def clear(self):
+		# The player returns to the beginning state of the game.
 		super().clear()
 		self.game_end = False
 
@@ -103,26 +112,25 @@ class BJ_Player(BJ_Hand):
 		return hit
 
 	def bust(self):
-		print(self.name, "bust.")
+		print(self.name, "busts.")
 		self.lose()
 
 	def lose(self):
-		print(f"{self.name} have lost ${self.bet}.")
+		print(self.name, " loses $", self.bet, ".", sep="")
 		self.fund -= self.bet
 
+	# factor effects to the size of winnings.
 	def win(self, factor):
-		print(f"{self.name} have won ${self.bet * factor}")
-		self.fund += self.bet * factor
+		winnings = int(self.bet * factor)
+
+		print(self.name, " wins $", winnings, ".", sep="")
+		self.fund += winnings
+
+		self.game_end = True
 
 	def push(self):
 		print(self.name, "played with the computer in a draw.")
 		print("All players remaining in the game remain at their rates.")
-
-	def place_bet(self, bet):
-		while bet > self.fund:
-			print(f"Too much. No more than ${self.fund} for you. Try again:", end=" ")
-			bet = float(input())
-		self.bet = bet
 
 
 class BJ_Dealer(BJ_Hand):
@@ -135,7 +143,7 @@ class BJ_Dealer(BJ_Hand):
 		return hit
 
 	def bust(self):
-		print(self.name, "bust.")
+		print(self.name, "busts.")
 
 	def flip_first_card(self):
 		first_card = self.cards[0]
@@ -165,6 +173,14 @@ class BJ_Game(object):
 
 		return sp
 
+	def __remove_bankrupts(self, players):
+		for player in players:
+			if 0 == player.fund:
+				print(player.name.title(), "has no more money and leaves the gaming table.\n")
+				players.remove(player)
+
+		return players
+
 	def __additional_cards(self, player):
 		while not player.is_busted() and player.is_hitting():
 			self.deck.deal([player])
@@ -173,11 +189,8 @@ class BJ_Game(object):
 				player.bust()
 
 	def play(self):
-		# Checks if the player has no more money before the next round.
-		for player in self.players:
-			if 0 == player.fund:
-				print(player.name, "has no more money and leaves the gaming table.\n")
-				self.players.remove(player)
+		# Check if any players have no money left before the next round and remove them.
+		self.players = self.__remove_bankrupts(self.players)
 		# Check if there is at least 1 player in the game.
 		if not self.players:
 			print("No one player has money. The game is over.")
@@ -186,12 +199,10 @@ class BJ_Game(object):
 
 		# The remaining players place their bets.
 		for player in self.players:
-			print(f"{player.name}\'s fund is ${player.fund}.")
-			bet = int(input("How many money do you want to bet? "))
-			player.place_bet(bet)
+			player.place_bet()
 		print()
 
-		# Checks how many cards in the deck. 
+		# Checks how many cards in the deck.
 		# If the number of players multiplied by 5 is less, clear the deck, populate and shuffle it. 
 		if (len(self.deck.cards) < len(self.players) * 5 and
 				self.decks < BJ_Game.MAX_DECKS):
@@ -216,9 +227,18 @@ class BJ_Game(object):
 				answer = games.ask_yes_no("Do you want to collect your winnings immediately " + 
 						"or wait until the end of the game? (y/n): ")
 				if "y" == answer:
-					# The player wins with factor 1.
+					# The player wins with a factor of 1 
+					# because he took the winnings immediately.
 					player.win(1)
-					player.game_end = True
+					
+					# If only 1 player is left and he has blackjack, 
+					# end the game round with initial values 
+					# for the remaining player and the dealer
+					# before the next round.
+					if len(self.players) == 1:
+						player.clear()
+						self.dealer.clear()
+						return
 
 		# The dealer's first card is turned face up.
 		self.dealer.flip_first_card()
@@ -235,16 +255,17 @@ class BJ_Game(object):
 				# Everyone who is still in the game wins.
 				for player in self.still_playing:
 					if not player.game_end:
-						# The player wins with factor 1.5.
+						# The player wins with factor 1.5
+						# because he waited for the end of the game.
 						player.win(1.5)
-						player.game_end = True
 			else:
 				# We compare the total points of the dealer
 				# and the players remaining in the game.
 				for player in self.still_playing:
 					if not player.game_end:
 						if player.total > self.dealer.total:
-							# The player wins with factor 1.5.
+							# The player wins with factor 1.5
+							# because he waited for the end of the game.
 							player.win(1.5)
 						elif player.total < self.dealer.total:
 							player.lose()
@@ -264,10 +285,11 @@ def main():
 	number = games.ask_number("How many players total? (1 - 7): ", low=1, high=(7+1))
 	for _ in range(number):
 		name = input("Enter player name: ")
-		fund = int(input("Enter player fund: "))
+		fund = int(input("Enter player fund: $"))
+		print()
+
 		player = BJ_Player(name, fund)
 		players.append(player)
-		print()
 
 	game = BJ_Game(players)
 	again = None
