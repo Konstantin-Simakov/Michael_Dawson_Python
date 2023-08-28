@@ -15,7 +15,7 @@ SPACE = " "
 QUIT = "quit"
 
 
-class Board():
+class Board(object):
 	""" A board for a player. """
 	# size means a number of cells on the one of sides on the board.
 	def __init__(self, size, player):
@@ -56,7 +56,7 @@ class Board():
 		player.location = position
 
 
-class Player():
+class Player(object):
 	""" The player is like a piece on the board 
 		(asterisk by default). 
 	"""
