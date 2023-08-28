@@ -96,7 +96,7 @@ class Player(object):
 		elif self.location in range(2*size - 1, size**2 - size, size):
 			legals = [self.location - 1, self.location + size, self.location - size]
 
-		# 3. When we can make 4 moves.
+		# 3. When we can make all 4 moves.
 		else:
 			legals = [self.location + 1, self.location - 1, self.location + size, self.location - size]
 
