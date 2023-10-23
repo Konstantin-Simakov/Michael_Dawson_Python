@@ -16,7 +16,6 @@ class Application(Frame):
 		self.create_widgets()
 		# Computer guesses a number.
 		self.the_number = random.randint(1, 100)
-		print(self.the_number)
 		# The number of attempts for guessing.
 		self.tries = 0
 
