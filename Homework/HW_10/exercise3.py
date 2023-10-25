@@ -175,7 +175,7 @@ class Application(Frame):
                 sum_check += self.dessert_prices[i]
 
         # Update (display) the text count.
-        sum_message = "The sum of your order is $" + str(sum_check)
+        sum_message = "The sum of your order is $" + str(sum_check) + "."
         self.count_txt.delete(0.0, END)
         self.count_txt.insert(0.0, sum_message)
 
