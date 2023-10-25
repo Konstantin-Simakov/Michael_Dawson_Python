@@ -1,7 +1,7 @@
 # exercise1.py
 # 
-# Change the program "Mad librarian" (mad_lib.py source file)
-# with creating the own control elements system. 
+# Modify the program "Mad librarian" (mad_lib.py source file)
+# by creating the own control elements system. 
 # Check buttons must be converted into radio buttons.
 # Use a loop to do it.
 # 
@@ -57,12 +57,12 @@ class Application(Frame):
         moods = ["itchy, ", "joyous, ", "electric, "]
         column = 1
         for mood in moods:
-	        Radiobutton(self,
-	                text=mood,
-	                variable=self.mood,
-	                value=mood
-	        ).grid(row=4, column=column, sticky=W)
-	        column += 1
+            Radiobutton(self,
+                    text=mood,
+                    variable=self.mood,
+                    value=mood
+            ).grid(row=4, column=column, sticky=W)
+            column += 1
 
         # Label for a radio button with body names.
         Label(self,
