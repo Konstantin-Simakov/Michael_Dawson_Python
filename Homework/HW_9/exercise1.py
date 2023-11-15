@@ -106,7 +106,7 @@ class BJ_Dealer(BJ_Hand):
 	""" The dealer in 'Blackjack' game. """
 	def is_hitting(self):
 		hit = self.total < 17
-		if 21 == hit:
+		if 21 == self.total:
 			print("Dealer has Blackjack.")
 
 		return hit
