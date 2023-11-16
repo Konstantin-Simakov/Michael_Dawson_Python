@@ -154,7 +154,7 @@ class BJ_Game(object):
 
 	def play(self):
 		# Check how many cards in the deck. 
-		# If the number cards in the deck is less than the number of players multiplied by 5, 
+		# If the number cards in the deck is less than the number of players and the dealer multiplied by 5, 
 		# populate and shuffle the deck extra. 
 		if (len(self.deck.cards) < len(self.players) * 5 and
 				self.decks < BJ_Game.MAX_DECKS):
