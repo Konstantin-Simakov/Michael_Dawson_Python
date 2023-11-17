@@ -129,8 +129,7 @@ class BJ_Player(BJ_Hand):
 		self.game_end = True
 
 	def push(self):
-		print(self.name, "played with the computer in a draw.")
-		print("All players remaining in the game remain at their rates.")
+		print(self.name, "pushes and sticks to his bet.")
 
 
 class BJ_Dealer(BJ_Hand):
