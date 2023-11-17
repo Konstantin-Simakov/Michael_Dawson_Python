@@ -99,7 +99,7 @@ class BJ_Player(BJ_Hand):
 		print(self.name, "won.")
 
 	def push(self):
-		print(self.name, "played with the computer in a draw.")
+		print(self.name, "pushes and sticks to his bet.")
 
 
 class BJ_Dealer(BJ_Hand):
