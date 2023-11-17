@@ -86,17 +86,17 @@ class BJ_Player(BJ_Hand):
 		return "y" == response
 
 	def bust(self):
-		print(self.name, "bust.")
+		print(self.name, "busts.")
 		self.lose()
 
 	def lose(self):
-		print(self.name, "lost.")
+		print(self.name, "loses.")
 
 	def win(self):
-		print(self.name, "won.")
+		print(self.name, "wins.")
 
 	def push(self):
-		print(self.name, "played with the computer in a draw.")
+		print(self.name, "pushes.")
 
 
 class BJ_Dealer(BJ_Hand):
