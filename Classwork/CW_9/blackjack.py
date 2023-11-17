@@ -105,7 +105,7 @@ class BJ_Dealer(BJ_Hand):
 		return self.total < 17
 
 	def bust(self):
-		print(self.name, "bust.")
+		print(self.name, "busts.")
 
 	def flip_first_card(self):
 		first_card = self.cards[0]
