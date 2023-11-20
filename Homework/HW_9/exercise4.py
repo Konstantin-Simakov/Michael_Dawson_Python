@@ -17,7 +17,7 @@ QUIT = "quit"
 
 class Board(object):
 	""" A board for a player. """
-	# size means a number of cells on the one of sides on the board.
+	# size means a number of cells on one side of the board.
 	def __init__(self, size, player):
 		self.size = size
 
