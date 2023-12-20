@@ -102,7 +102,7 @@ class Chef(games.Sprite):
 	"""
 	IMAGE = games.load_image("chef.bmp")
 	
-	# 2. Move the chef faster (speed -> 5 instead of 2).
+	# 2. Move the chef faster (speed -> 5 instead of 2 by default).
 	def __init__(self, y=55, speed=5, odds_change=200):
 		""" Initialize a Chef object. """
 		super().__init__(
