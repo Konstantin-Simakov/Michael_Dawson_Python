@@ -144,12 +144,9 @@ def main():
 
 	# 4. Release more crazy chefs by creating a list of them
 	# and adding them on the graphics screen.
-	# the_chef = Chef()
-	# games.screen.add(the_chef)
-	crazy_chefs = []
-	for i in range(3):
-		crazy_chefs.append(Chef())
-		games.screen.add(crazy_chefs[i])
+	num_chefs = 3
+	for i in range(num_chefs):
+		games.screen.add(Chef())
 	# Create a pan next.
 	the_pan = Pan()
 	games.screen.add(the_pan)
