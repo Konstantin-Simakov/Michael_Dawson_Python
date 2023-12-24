@@ -41,7 +41,7 @@ class Brick(games.Sprite):
 	A heavy thing that falls to the character (soldier). 
 	"""
 	IMAGE = games.load_image("brick.bmp")
-	speed = 3
+	speed = 5
 
 	def __init__(self, x, y=10):
 		super().__init__(
@@ -79,8 +79,9 @@ class Dummy(games.Sprite):
 	Invisible dummy from which the bricks are falling down.
 	"""
 	IMAGE = games.load_image("dummy.png")
+	speed = 4.5
 	
-	def __init__(self, y=15, speed=1, odds_change=200):
+	def __init__(self, y=15, speed=speed, odds_change=200):
 		""" Initialize a Chef object. """
 		super().__init__(
 				image=Dummy.IMAGE,
