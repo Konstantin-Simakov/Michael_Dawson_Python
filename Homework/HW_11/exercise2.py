@@ -122,6 +122,7 @@ def main():
 	SKY_IMAGE = games.load_image("sky.jpg", transparent=False)
 	games.screen.background = SKY_IMAGE
 
+	# Create an invisible dummy from which brinks will fall down.
 	games.screen.add(Dummy())
 
 	# Create a soldier next.
