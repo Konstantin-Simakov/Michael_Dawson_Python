@@ -133,5 +133,6 @@ def main():
 	games.screen.event_grab = True
 	games.screen.mainloop()
 
+# Go!
 if "__main__" == __name__:
 	main()
