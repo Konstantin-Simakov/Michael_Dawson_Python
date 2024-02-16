@@ -299,19 +299,19 @@ class Game(object):
 					size=Asteroid.LARGE)
 			games.screen.add(new_asteroid)
 
-			# Display the level number.
-			level_message = games.Message(
-					value="Level "+str(self.level),
-					size=40,
-					color=color.yellow,
-					x=games.screen.width/2,
-					y=games.screen.height/10,
-					lifetime=3*games.screen.fps,
-					is_collideable=False)
-			games.screen.add(level_message)
-			# Sound effect of going (besides the 1st level).
-			if self.level > 1:
-				self.sound.play()
+		# Display the level number.
+		level_message = games.Message(
+				value="Level "+str(self.level),
+				size=40,
+				color=color.yellow,
+				x=games.screen.width/2,
+				y=games.screen.height/10,
+				lifetime=3*games.screen.fps,
+				is_collideable=False)
+		games.screen.add(level_message)
+		# Sound effect of going (besides the 1st level).
+		if self.level > 1:
+			self.sound.play()
 
 	def end(self):
 		""" End the game. """
