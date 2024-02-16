@@ -11,7 +11,8 @@
 # Wrapper was added.
 # Explosions was added.
 # Levels, music theme, game statistics are added.
-# Space debris added. It needs 2 missiles to be destroyed.
+# Space debris are added. It needs 2 missiles to be destroyed, 
+# 'K_DOWN' key are added, it's improved level exceeding process.
 # 
 
 import math, random
@@ -106,19 +107,18 @@ class Debris(Wrapper):
     """ Space debris. It needs 2 missiles to destroy it. """
     IMAGE = games.load_image("space_debris.bmp")
     SPEED = 3
-    POINTS = 40
+    POINTS = 20
     total = 0
 
-    def __init__(self, game, x, y, size=Asteroid.LARGE):
+    def __init__(self, game, x, y):
         """ Initialize a sprite with the asteroid picture. """
         Debris.total += 1
         super().__init__(
                 image=Debris.IMAGE,
                 x=x,
                 y=y,
-                dx=random.choice([-1, 1]) * Debris.SPEED * random.random()/size,
-                dy=random.choice([-1, 1]) * Debris.SPEED * random.random()/size)
-        self.size = size
+                dx=random.choice([-1, 1]) * Debris.SPEED * random.random(),
+                dy=random.choice([-1, 1]) * Debris.SPEED * random.random())
         self.game = game
         self.lives = 2
 
@@ -314,8 +314,8 @@ class Game(object):
 
         # Reversed space around the ship.
         BUFFER = 150
-        # Create new asteroids.
-        for i in range(self.level):
+        # Add a new asteroid at every level divisible by 2 (with step = 2).
+        for i in range(0, self.level, 2):
             # Calculate x and y so that they are at least 150 pixels away from the ship.
             # First, choose minimum indents through horizontal and vertical.
             x_min = random.randrange(BUFFER)
@@ -340,7 +340,7 @@ class Game(object):
                     size=Asteroid.LARGE)
             games.screen.add(new_asteroid)
 
-        # Create new space debris.
+        # Add a new space debris.
         for i in range(self.level):
             # Calculate x and y so that they are at least 150 pixels away from the ship.
             # First, choose minimum indents through horizontal and vertical.
