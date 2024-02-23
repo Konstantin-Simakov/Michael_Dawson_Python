@@ -131,7 +131,7 @@ class Debris(Wrapper):
             self.game.score.value += Debris.POINTS
             self.game.score.right = games.screen.width - 10
 
-            # If there are no more Debriss, go to the next level.
+            # If there are no more Debris, go to the next level.
             if 0 == Asteroid.total and 0 == Debris.total:
                 self.game.advance()
             super().die()
@@ -160,7 +160,7 @@ class Ship(Collider):
         """ Rotate the ship when arrow keys is pressed. """
         # Limit horizontal and vertical velocities.
         self.dx = min(max(self.dx, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
-        self.dy = min(max(self.dy, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
+        self.dy = min(max(self.dy, -Ship.VELOCITY_MfAX), Ship.VELOCITY_MAX)
 
         if games.keyboard.is_pressed(games.K_LEFT):
             self.angle -= Ship.ROTATION_STEP
@@ -257,7 +257,7 @@ class Explosion(games.Animation):
             "explosion5.bmp",
             "explosion6.bmp",
             "explosion7.bmp",
-            "explosion8.bmp",
+            "explosion8.bmp"
     ]
 
     def __init__(self, x, y):
