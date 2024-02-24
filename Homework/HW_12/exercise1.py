@@ -160,7 +160,7 @@ class Ship(Collider):
         """ Rotate the ship when arrow keys is pressed. """
         # Limit horizontal and vertical velocities.
         self.dx = min(max(self.dx, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
-        self.dy = min(max(self.dy, -Ship.VELOCITY_MfAX), Ship.VELOCITY_MAX)
+        self.dy = min(max(self.dy, -Ship.VELOCITY_MAX), Ship.VELOCITY_MAX)
 
         if games.keyboard.is_pressed(games.K_LEFT):
             self.angle -= Ship.ROTATION_STEP
@@ -230,6 +230,7 @@ class Missile(Collider):
                 image=Missile.IMAGE,
                 x=x,
                 y=y,
+                angle=ship_angle,
                 dx=dx,
                 dy=dy)
         self.lifetime = Missile.LIFETIME
