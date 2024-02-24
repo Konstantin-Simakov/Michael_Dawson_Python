@@ -40,7 +40,8 @@ class Collider(Wrapper):
 class Invader(Wrapper):
     """ Space invader. It needs >=1 missiles to destroy it. """
     IMAGE = games.load_image("space_invader.bmp")
-    SPEED = 2.5
+    SPEED = 2
+    MIN_SPEED = SPEED / 10
     POINTS = 20
     lives = 1
     total = 0
@@ -48,11 +49,18 @@ class Invader(Wrapper):
     def __init__(self, game, x, y):
         """ Initialize a sprite with the invader picture. """
         Invader.total += 1
+        
+        # Set the random speed for an invader but
+        # not less than Invader.MIN_SPEED value.
+        dy = Invader.SPEED * random.random()
+        if dy < Invader.MIN_SPEED:
+            dy = Invader.MIN_SPEED
+        
         super().__init__(
                 image=Invader.IMAGE,
                 x=x,
                 y=y,
-                dy=Invader.SPEED*random.random())
+                dy=dy)
         self.game = game
         # How many missiles does it need to destroy the invader.
         self.lives = Invader.lives
@@ -141,7 +149,7 @@ class Missile(Collider):
 
     def __init__(self, cannon_x):
         """ Initialize a sprite with image of a missile. """
-        Missile.SOUND.set_volume(0.25)
+        Missile.SOUND.set_volume(0.3)
         Missile.SOUND.play()
         
         x = cannon_x
@@ -192,13 +200,13 @@ class Explosion(games.Animation):
                 repeat_interval=4,
                 n_repeats=1,
                 is_collideable=False)
-        Explosion.SOUND.set_volume(0.25)
+        Explosion.SOUND.set_volume(0.3)
         Explosion.SOUND.play()
 
 
 class Game(object):
     """ The actual game. """
-    MAX_LEVEL = 5
+    MAX_LEVEL = 10
     def __init__(self):
         """ Initialize a Game object. """
         # Choose the initial level.
@@ -236,10 +244,13 @@ class Game(object):
     def advance(self):
         """ Takes the game to the next level. """
         self.level += 1
-        # Increase the number of lives for each invader if the level is even, 
-        # starting at level 2.
+        # Increase the number of lives for each invader, speed of the cannon and
+        # decrease missile delay before the next missile launch.
+        # if the level is even, starting at level 2.
         if self.level % 2 == 0:
             Invader.lives += 1
+            Cannon.SPEED += 1
+            Cannon.MISSILE_DELAY -= 1
         
         # Add a new space invader.
         for i in range(self.level):
@@ -265,7 +276,7 @@ class Game(object):
         games.screen.add(level_message)
         # Sound effect of going (besides the 1st level).
         if self.level > 1:
-            self.sound.set_volume(0.25)
+            self.sound.set_volume(0.3)
             self.sound.play()
 
     def lose(self):
