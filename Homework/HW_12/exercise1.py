@@ -11,8 +11,10 @@
 # Wrapper was added.
 # Explosions was added.
 # Levels, music theme, game statistics are added.
+# ----------------------------------------------------------------
 # Space debris are added. It needs 2 missiles to be destroyed, 
 # 'K_DOWN' key are added, it's improved level exceeding process.
+# Launch angle for a missile are added.
 # 
 
 import math, random
