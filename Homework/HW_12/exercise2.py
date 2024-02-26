@@ -1,5 +1,5 @@
 # exercise2.py
-# 'Space invaders' program simulator.
+# 'Space invaders' game simulator.
 
 import math, random
 from superwires import games, color
