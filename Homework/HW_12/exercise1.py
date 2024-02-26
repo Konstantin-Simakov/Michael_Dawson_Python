@@ -312,10 +312,10 @@ class Game(object):
         games.screen.mainloop()
 
     def advance(self):
-        """ Takes the game to the next level. """
+        """ Take the game to the next level. """
         self.level += 1
 
-        # Reversed space around the ship.
+        # Reverse space around the ship.
         BUFFER = 150
         # Add a new asteroid at every level divisible by 2 (with step = 2).
         for i in range(0, self.level, 2):

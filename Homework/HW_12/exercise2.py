@@ -264,7 +264,7 @@ class Game(object):
                     y=y)
             games.screen.add(new_invader)
 
-        # Display the level number.
+        # Display the level number in 3 seconds.
         level_message = games.Message(
                 value="Level "+str(self.level),
                 size=40,
