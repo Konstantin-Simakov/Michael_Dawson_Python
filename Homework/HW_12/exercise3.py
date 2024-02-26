@@ -156,6 +156,9 @@ class Item(games.Sprite):
 class Game(object):
     """ The actual game. """
     MAX_LEVEL = 10
+    # Minimum indentation of all objects from the bounds grpaphics screen.
+    INDENT = 20
+
     def __init__(self):
         """ Initialize a Game object. """
         # Choose the initial level.
@@ -176,8 +179,8 @@ class Game(object):
         # in the left lower corner of the graphics screen.
         self.pacman = Pacman(
                 game=self,
-                x=20,
-                y=games.screen.height-20)
+                x=Game.INDENT,
+                y=games.screen.height-Game.INDENT)
         games.screen.add(self.pacman)
 
     def play(self):
@@ -200,20 +203,16 @@ class Game(object):
         if self.level % 2 == 0:
             Pacman.speed += 1
 
-        # Reverse space around the pacman.
-        BUFFER = 150
+        # Reverse minimum space around the pacman through horizontal and vertical.
+        BUFFER_X = games.screen.width // 5
+        BUFFER_Y = games.screen.height // 5
         # Add new items.
-        # The factor of new items.
+        # The factor of new items compared to a current level.
         FACTOR = 2
         for i in range(self.level * FACTOR):
-            # Calculate x and y so that they are at least BUFFER pixels away from the pacman.
-            # First, choose minimum indents through horizontal and vertical.
-            x_min = random.randrange(BUFFER)
-            y_min = BUFFER - x_min
-            # Based on these indentations, we will generate
-            # horizontal and vertical distances from the pacman.
-            x_distance = random.randrange(x_min, games.screen.width - x_min)
-            y_distance = random.randrange(y_min, games.screen.height - y_min)
+            # First, choose indents through horizontal and vertical from the pacman.
+            x_distance = random.randrange(BUFFER_X, games.screen.width - Game.INDENT)
+            y_distance = random.randrange(BUFFER_Y, games.screen.height - Game.INDENT)
             # Based on these distances, calculate screen coordinates.
             x = self.pacman.x + x_distance
             y = self.pacman.y + y_distance
@@ -222,7 +221,17 @@ class Game(object):
             x %= games.screen.width
             y %= games.screen.height
 
-            # Create a new item.
+            # Move it from bounds a bit, else this game will be too difficult.
+            if x < Game.INDENT:
+                x = Game.INDENT
+            elif x > games.screen.width - Game.INDENT:
+                x = games.screen.width - Game.INDENT
+            if y < Game.INDENT:
+                y = Game.INDENT
+            elif y > games.screen.height - Game.INDENT:
+                y = games.screen.height - Game.INDENT
+
+            # Create a new item with x and y values calculated above.
             new_item = Item(
                     game=self,
                     x=x,
