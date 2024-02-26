@@ -10,7 +10,7 @@ class Pacman(games.Animation):
     """ An actual pacman. """
     IMAGES = [
         "pacman1.bmp",
-        "pacman2.bmp",
+        "pacman2.bmp"
     ]
     # The speed will be increased with level up.
     # Pacman's eat sound.
