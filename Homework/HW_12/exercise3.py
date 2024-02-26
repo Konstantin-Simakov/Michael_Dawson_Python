@@ -1,5 +1,5 @@
 # exercise3.py
-# 'Pacman' program simulator.
+# 'Pacman' game simulator.
 
 import random
 from superwires import games, color
