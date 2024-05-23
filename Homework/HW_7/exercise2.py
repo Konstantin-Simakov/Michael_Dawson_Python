@@ -14,7 +14,7 @@ import sys
 def open_file(file_name, mode):
 	''' Opens the file. '''
 	try:
-		the_file = open(file_name, mode, encoding="utf-8")
+		the_file = open(file_name, mode)
 	except IOError as err_message:
 		print("Couldn\'t open the file", file_name)
 		the_file = 0
