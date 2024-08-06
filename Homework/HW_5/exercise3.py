@@ -1,99 +1,98 @@
-# exercise3.py
+# exercise2.py
 # 
-# 'Who is Your Dad?' program that lets the user enter the name of a male
-# and produces the name of his father. 
-# To make it more interesting, you can "teach" the program about 
-# kinship among literary characters, historical figures and modern celebrities.
-# Allow the user to add, replace, and delete son-father pairs.
+# Write a character creation program for a role-playing game. 
+# The player must receive a pool of 30 points that they can spend on four attributes: 
+# Strength, Health, Wisdom and Dexterity. 
+# The player must be able to spend points from the pool on any attribute, 
+# as well as return them to the pool.
 # 
 
-# Initial variables
-relations = {}
+# Constants
+MAX_POOL = 30
 
-print("\tWelcome to \'Who is your Dad?\' program!\n")
+# Initial varaibles.
+person = {"Strength": 0, "Health": 0, "Wisdom": 0, "Dexterity": 0}
+pool = MAX_POOL
+
+print("Welcome to \'Creator of Roler Person\'!")
 
 choice = None
 while choice != 0:
+	# Output of results
+	print("\nYour person has follow attributes:\n")
+	for attribute in person.keys():
+		print("\t\t", end="")
+		print(attribute, "-", person[attribute])
+	print("\n\t\tPool has", pool, "points.")
+
 	# Menu
 	print(
 		"""
 What action do you want to choose?\n
 \t\t0 - Exit
-\t\t1 - Show all Son-Dad pairs
-\t\t2 - Find Son-Dad pair
-\t\t3 - Add Son-Dad pair
-\t\t4 - Change Son-Dad pair
-\t\t5 - Delete Son-Dad pair\n
+\t\t1 - Add points to attributes
+\t\t2 - Withdraw points from attributes
+
 		""")
 	# Choice of action
-	choice = int(input("Your choice: "))
+	choice = int(input("Your action: "))
 
 	# 0 - Exit
 	if 0 == choice:
 		break
 
-	# 1 - Show all Son-Dad pairs
+	# 1 - Add points from pool to attributes
 	elif 1 == choice:
-		if relations:
-			for son, dad in relations.items():
-				print("Son:", son, end=", ")
-				print("his dad:", dad)
-		else:
-			print("There are no Son-Dad pairs.")
-	
-	# 2 - Find Son-Dad pair
-	elif 2 == choice:
-		son = input("Enter name of son: ").title()
-		if son in relations:
-			print("Son:", son, end=", ")
-			print("his dad:", relations[son])
-		else:
-			print("There is no such Son-Dad pair. Try to add it.")
-
-	# 3 - Add a Son-Dad pair
-	elif 3 == choice:
-		son = input("Enter name of son: ").title()
-		while not son:
-			son = input()
-
-		if son not in relations:
-			dad = input("Enter name of his dad: ").title()
-			while not dad:
-				dad = input()
-				
-			relations[son] = dad
-			print("The Son-Dad pair has been added.")
-		else:
-			print("This Son-Dad pair already exists. Try to change it.")
-
-	# 4 - Change a Son-Dad pair
-	elif 4 == choice:
-		son = input("Enter name of son: ").title()
-		if son in relations:
-			dad = input("Enter name of his dad: ").title()
-			while not dad:
-				dad = input()
-			
-			relations[son] = dad
-			print("The Son-Dad pair has been changed.")
-		else:
-			print("This Son-Dad pair doesn\'t exist. Try to add it.")
-
-	# 5 - Delete a Son-Dad pair
-	elif 5 == choice:
-		son = input("Enter name of son: ").title()
+		strength = int(input("\nHow many points do you want to add for \'Strength\'? "))
+		health = int(input("How many points do you want to add for \'Health\'? "))
+		wisdom = int(input("How many points do you want to add for \'Wisdom\'? "))
+		dexterity = int(input("How many points do you want to add for \'Dexterity\'? "))
 		
-		if son in relations:
-			print(son, "with his dad,", relations[son], end=", has been deleted.") 
-			del relations[son]
-		else:
-			if not son:
-				print("Entered emtpy line. There is nothing to delete.")
-			else:
-				print("This Son-Dad pair couldn\'t be deleted because it doesn\'t exist.")
+		# Input validation
+		while (strength + health + wisdom + dexterity > pool or
+				strength < 0 or
+				health < 0 or
+				wisdom < 0 or
+				dexterity < 0):
+			print("Incorrect input. Try again.")
+			strength = int(input("How many points do you want to add for \'Strength\'? "))
+			health = int(input("How many points do you want to add for \'Health\'? "))
+			wisdom = int(input("How many points do you want to add for \'Wisdom\'? "))
+			dexterity = int(input("How many points do you want to add for \'Dexterity\'? "))
+
+		person["Strength"] += strength
+		person["Health"] += health
+		person["Wisdom"] += wisdom
+		person["Dexterity"] += dexterity
+
+		pool -= strength + health + wisdom + dexterity
+
+	# 2 - Withdraw points from attributes to pool
+	elif 2 == choice:
+		strength = int(input("How many points do you want to withdraw from \'Strength\'? "))
+		health = int(input("How many points do you want to withdraw from \'Health\'? "))
+		wisdom = int(input("How many points do you want to withdraw from \'Wisdom\'? "))
+		dexterity = int(input("How many points do you want to withdraw from \'Dexterity\'? "))
+
+		# Input validation
+		if strength > person["Strength"] or strength < 0:
+			strength = person["Strength"]
+		if health > person["Health"] or health < 0:
+			health = person["Health"]
+		if wisdom > person["Wisdom"] or wisdom < 0:
+			wisdom = person["Wisdom"]
+		if dexterity > person["Dexterity"] or dexterity < 0:
+			dexterity = person["Dexterity"]
+
+		person["Strength"] -= strength
+		person["Health"] -= health
+		person["Wisdom"] -= wisdom
+		person["Dexterity"] -= dexterity
+		
+		pool += strength + health + wisdom + dexterity
 
 	# Invalid choice
 	else:
-		print("Invalid choice. Please choose 0, 1, 2, 3 or 4.")
+		print("Invalid choice. Choose 0, 1 or 2.")
 
 input("\n\nPress the key <Enter> to exit.")

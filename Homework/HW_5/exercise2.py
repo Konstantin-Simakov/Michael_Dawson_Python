@@ -1,98 +1,69 @@
 # exercise2.py
 # 
-# Write a character creation program for a role-playing game. 
-# The player must receive a pool of 30 points that they can spend on four attributes: 
-# Strength, Health, Wisdom and Dexterity. 
-# The player must be able to spend points from the pool on any attribute, 
-# as well as return them to the pool.
+# Improved high_scores2_py program.
+# Demonstrate improved working with sorting methods.
 # 
 
-# Constants
-MAX_POOL = 30
-
-# Initial varaibles.
-person = {"Strength": 0, "Health": 0, "Wisdom": 0, "Dexterity": 0}
-pool = MAX_POOL
-
-print("Welcome to \'Creator of Roler Person\'!")
-
+scores = []
 choice = None
-while choice != 0:
-	# Output of results
-	print("\nYour person has follow attributes:\n")
-	for attribute in person.keys():
-		print("\t\t", end="")
-		print(attribute, "-", person[attribute])
-	print("\n\t\tPool has", pool, "points.")
 
-	# Menu
-	print(
-		"""
-What action do you want to choose?\n
-\t\t0 - Exit
-\t\t1 - Add points to attributes
-\t\t2 - Withdraw points from attributes
+# Main part of program
+while choice != "0":
+    print(
+        """
+\tHigh Scores 2.0
+\t0 - exit
+\t1 - show scores
+\t2 - add a score
+        """
+    )
+    choice = input("Your choice: ")
+    print()
 
-		""")
-	# Choice of action
-	choice = int(input("Your action: "))
+    # Exit
+    if "0" == choice:
+        print("Goodbye!")
 
-	# 0 - Exit
-	if 0 == choice:
-		break
+    # Display high-score table
+    elif "1" == choice:
+        print("High Scores:")
+        print("NAME\tSCORE")
+        for entry in scores:
+            score, name = entry
+            print(name, "\t", score)
 
-	# 1 - Add points from pool to attributes
-	elif 1 == choice:
-		strength = int(input("\nHow many points do you want to add for \'Strength\'? "))
-		health = int(input("How many points do you want to add for \'Health\'? "))
-		wisdom = int(input("How many points do you want to add for \'Wisdom\'? "))
-		dexterity = int(input("How many points do you want to add for \'Dexterity\'? "))
-		
-		# Input validation
-		while (strength + health + wisdom + dexterity > pool or
-				strength < 0 or
-				health < 0 or
-				wisdom < 0 or
-				dexterity < 0):
-			print("Incorrect input. Try again.")
-			strength = int(input("How many points do you want to add for \'Strength\'? "))
-			health = int(input("How many points do you want to add for \'Health\'? "))
-			wisdom = int(input("How many points do you want to add for \'Wisdom\'? "))
-			dexterity = int(input("How many points do you want to add for \'Dexterity\'? "))
+    # Add a score
+    elif "2" == choice:
+        # 1. Sorting the list (scores) with descending order.
+        name = input("Put down the player\'s name: ")
+        score = int(input("Put down his score: "))
+        entry = (score, name)
+        scores.append(entry)
+        scores.sort(reverse=True)
+        scores = scores[:5]         # Keep only top 5 scores
 
-		person["Strength"] += strength
-		person["Health"] += health
-		person["Wisdom"] += wisdom
-		person["Dexterity"] += dexterity
+        # 2. Sorting names in the list with ascending order.
+        LEN_SCORES = len(scores)
+        i = 0
+        while i < LEN_SCORES-1:
+            if scores[i][0] == scores[i+1][0]:
+                j = i
+                subitems = []
+                while j < LEN_SCORES and scores[i][0] == scores[j][0]:
+                    subitems.append((scores[j][1], scores[j][0]))
+                    j += 1
+                subitems.sort()
+                
+                reverse_subitems = []
+                for item in subitems:
+                    reverse_subitems.append((item[1], item[0]))
+                scores[i:j] = reverse_subitems
+                i = j
+            else:
+                i += 1
 
-		pool -= strength + health + wisdom + dexterity
-
-	# 2 - Withdraw points from attributes to pool
-	elif 2 == choice:
-		strength = int(input("How many points do you want to withdraw from \'Strength\'? "))
-		health = int(input("How many points do you want to withdraw from \'Health\'? "))
-		wisdom = int(input("How many points do you want to withdraw from \'Wisdom\'? "))
-		dexterity = int(input("How many points do you want to withdraw from \'Dexterity\'? "))
-
-		# Input validation
-		if strength > person["Strength"] or strength < 0:
-			strength = person["Strength"]
-		if health > person["Health"] or health < 0:
-			health = person["Health"]
-		if wisdom > person["Wisdom"] or wisdom < 0:
-			wisdom = person["Wisdom"]
-		if dexterity > person["Dexterity"] or dexterity < 0:
-			dexterity = person["Dexterity"]
-
-		person["Strength"] -= strength
-		person["Health"] -= health
-		person["Wisdom"] -= wisdom
-		person["Dexterity"] -= dexterity
-		
-		pool += strength + health + wisdom + dexterity
-
-	# Invalid choice
-	else:
-		print("Invalid choice. Choose 0, 1 or 2.")
+    # Some unknown choice
+    else:
+        print("Sorry, but", choice, "isn\'t a valid choice.")
 
 input("\n\nPress the key <Enter> to exit.")

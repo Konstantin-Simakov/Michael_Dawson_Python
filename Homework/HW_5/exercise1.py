@@ -1,3 +1,4 @@
+
 # exercise1.py
 # Displays the list of words in random order
 
