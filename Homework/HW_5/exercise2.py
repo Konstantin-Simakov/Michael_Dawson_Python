@@ -40,7 +40,6 @@ while choice != "0":
         entry = (score, name)
         scores.append(entry)
         scores.sort(reverse=True)
-        scores = scores[:5]         # Keep only top 5 scores
 
         # 2. Sorting names in the list with ascending order.
         LEN_SCORES = len(scores)
@@ -61,6 +60,9 @@ while choice != "0":
                 i = j
             else:
                 i += 1
+
+        # 3. Only then keep top 5 scores.
+        scores = scores[:5]
 
     # Some unknown choice
     else:
