@@ -34,14 +34,14 @@ while choice != "0":
 
     # Add a score
     elif "2" == choice:
-        # 1. Sorting the list (scores) with descending order.
+        # 1. Sort the list (scores) in descending order.
         name = input("Put down the player\'s name: ")
         score = int(input("Put down his score: "))
         entry = (score, name)
         scores.append(entry)
         scores.sort(reverse=True)
 
-        # 2. Sorting names in the list with ascending order.
+        # 2. Sort names having same scores in the list in ascending order.
         LEN_SCORES = len(scores)
         i = 0
         while i < LEN_SCORES-1:
