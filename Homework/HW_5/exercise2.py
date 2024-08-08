@@ -41,7 +41,7 @@ while choice != "0":
         scores.append(entry)
         scores.sort(reverse=True)
 
-        # 2. Sort names having same scores in the list in ascending order.
+        # 2. Sort names having same scores in the list in ascending (alphabetical) order.
         LEN_SCORES = len(scores)
         i = 0
         while i < LEN_SCORES-1:
