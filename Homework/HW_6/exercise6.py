@@ -8,6 +8,7 @@ def swap(x, y):
 	y = temp
 
 	return x, y
+	# return y, x
 
 
 def main():
