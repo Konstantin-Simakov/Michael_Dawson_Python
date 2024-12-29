@@ -15,12 +15,12 @@ def factorial(num):
 
 def main():
 	''' Main program '''
-	num = int(input("Enter a number (<= 0 to exit): "))
+	num = int(input("Enter a number (< 0 to exit): "))
 	while num >= 0:
 		print(num, end="! = ")
 		print(factorial(num))
 		
-		num = int(input("Enter next number (<= 0 to exit): "))
+		num = int(input("Enter next number (< 0 to exit): "))
 
 
 # Program launch (global scope only).
